@@ -12,5 +12,10 @@
         {% thumbnail house.photo "650x400" crop="center" as im %}
             <img src="{{ im.url }}" alt="Дом {{ house.name }}">
         {% endthumbnail %}
+
+        <h2>Заявка</h2>
+        <form method="post">
+            {{ form.as_p }}
+        </form>
     </div>
 {% endblock %}
