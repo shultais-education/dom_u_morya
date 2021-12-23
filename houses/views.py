@@ -17,6 +17,11 @@ def house_detail(request, house_id):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse("house", kwargs={"house_id": house.id}))
+            url = reverse("house", kwargs={"house_id": house.id})
+            return HttpResponseRedirect(f"{url}?sent=1")
 
-    return render(request, "houses/house_detail.html", {"house": house, "form": form})
+    return render(request, "houses/house_detail.html", {
+        "house": house,
+        "form": form,
+        "sent": "sent" in request.GET
+    })
