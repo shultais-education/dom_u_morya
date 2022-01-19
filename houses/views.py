@@ -11,6 +11,7 @@ def houses_list(request):
     houses = House.objects.filter(active=True)
     form = HousesFilterForm(request.GET)
     if form.is_valid():
+
         if form.cleaned_data["min_price"]:
             houses = houses.filter(price__gte=form.cleaned_data["min_price"])
         if form.cleaned_data["max_price"]:
@@ -19,6 +20,9 @@ def houses_list(request):
             houses = houses.filter(
                 Q(description__icontains=form.cleaned_data["query"]) |
                 Q(name__icontains=form.cleaned_data["query"]))
+        if form.cleaned_data["ordering"]:
+            houses = houses.order_by(form.cleaned_data["ordering"])
+
     return render(request, "houses/houses_list.html", {"houses": houses, "form": form})
 
 
