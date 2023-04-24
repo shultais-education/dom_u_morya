@@ -1,13 +1,12 @@
 {% extends "index.html" %}
-
-{% load thumbnail %}
+{% load thumbnail humanize %}
 
 {% block application %}
-    <a href="{% url 'home' %}">Главная</a>
+    <div class="house-detail">
+        <a href="{% url 'home' %}">Главная</a>
 
-    <div>
-        <h1>{{ house.name }}</h1>
-        <div>{{ house.price }}</div>
+        <h1 class="house-name">{{ house.name }} <span class="price">{{ house.price|intcomma }} &#x20bd;</span></h1>
+        <div></div>
         <div>{{ house.description }}</div>
         {% thumbnail house.photo "650x400" crop="center" as im %}
             <img src="{{ im.url }}" alt="Дом {{ house.name }}">
@@ -17,7 +16,7 @@
         {% if sent %}
             <p>Спасибо! Ваша заявка принята.</p>
         {% endif %}
-        <form method="post">
+        <form method="post" class="order-form">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Отправить заявку</button>
