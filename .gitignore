@@ -4,3 +4,4 @@ db.sqlite3
 /media
 /cache
 local_settings.py
+/production_static
