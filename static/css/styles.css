@@ -121,6 +121,10 @@ footer {
     cursor: pointer;
 }
 
+.search-form button[type=submit]:hover {
+    background-color: #22b182;
+}
+
 .search-form label {
     color: #5a5a5a;
     font-weight: normal;
