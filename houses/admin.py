@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import House
+from houses.models import House
 
 
 @admin.register(House)
